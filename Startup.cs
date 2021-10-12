@@ -61,3 +61,9 @@ namespace entity_fr
         }
     }
 }
+
+/*
+    CREATE , READ, UPDATE , DELETE (CRUD)
+
+    dotnet aspnet-codegenerator razorpage -m entity_fr.models.Article -dc entity_fr.models.MyBlogContext -outDir Pages/Blog -udl --referenceScriptLibraries
+*/

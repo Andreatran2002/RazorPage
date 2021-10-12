@@ -7,14 +7,17 @@ namespace entity_fr.models{
     public class Article{
         [Key]
         public int Id { get; set; }
-        [StringLength(255)]
-        [Required]
+        [StringLength(255,MinimumLength =5,ErrorMessage="{0} phải dài từ {2} đến {1}")]
+        [Required(ErrorMessage ="{0} phải nhập")]
+        [Display(Name="Tiêu đề")]
         [Column(TypeName = "nvarchar")]
         public string Title { get; set; }
         [DataType(DataType.Date)]
         [Required]
+        [Display(Name="Ngày tạo")]
         public DateTime Created { get; set; }
         [Column(TypeName = "ntext")]
+        [Display(Name="Nội dung")]
         public string Content { get; set;}
     }
 }
