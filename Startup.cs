@@ -74,7 +74,13 @@ namespace entity_fr
                 // Cấu hình đăng nhập.
                 options.SignIn.RequireConfirmedEmail = true;            // Cấu hình xác thực địa chỉ email (email phải tồn tại)
                 options.SignIn.RequireConfirmedPhoneNumber = false;     // Xác thực số điện thoại
+                options.SignIn.RequireConfirmedAccount = true; 
 
+            }); 
+            services.ConfigureApplicationCookie(option =>{
+                option.LoginPath="/login";
+                option.LogoutPath="/logout"; 
+                option.AccessDeniedPath="/accessdenied.html"; 
             }); 
         }
 
