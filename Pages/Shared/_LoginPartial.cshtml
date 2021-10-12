@@ -1,0 +1,36 @@
+
+@using Microsoft.AspNetCore.Identity
+@using entity_fr.models
+
+@* // Dịch vụ liên quan đến sign in  *@
+@inject SignInManager<AppUser> SignInManager
+@inject UserManager<AppUser> UserManager
+
+@{
+    // Ở trong tất cả file đều có tồn tại biên User chứa thông tin đăng nhập của user 
+    // SignInManager.IsSignedIn(User);  
+    // UserManager.GetUsername(User)
+}
+
+<ul class="navbar-nav">
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index">
+                Xin chào @UserManager.GetUserName(User)
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Logout">Đăng xuất</a>
+        </li>
+    }
+    else{
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Đăng ký</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">Đăng nhập</a>
+        </li>
+    }
+    
+</ul>
