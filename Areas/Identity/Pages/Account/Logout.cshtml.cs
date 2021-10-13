@@ -40,7 +40,7 @@ namespace entity_fr.Areas.Identity.Pages.Account
             {
                 returnUrl = Url.Content("~/");
                 return LocalRedirect(returnUrl);
-                // return RedirectToPage();
+                // return RedirectToPage();ẽ
             }
         }
     }

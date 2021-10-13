@@ -42,6 +42,7 @@ namespace entity_fr.Areas.Identity.Pages.Account
 
         public string ReturnUrl { get; set; }
 
+        //Dùng để đăng nhập bằng phương thức khác 
         public IList<AuthenticationScheme> ExternalLogins { get; set; }
 
         public class InputModel
@@ -72,6 +73,9 @@ namespace entity_fr.Areas.Identity.Pages.Account
         {
             ReturnUrl = returnUrl;
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+            // foreach(var provider in ExternalLogins){
+            //     _logger.LogInformation(provider.Name); 
+            // }
         }
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
