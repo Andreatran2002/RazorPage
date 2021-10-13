@@ -31,8 +31,8 @@ namespace entity_fr.Areas.Identity.Pages.Account
 
         public class InputModel
         {
-            [Required]
-            [EmailAddress]
+            [Required(ErrorMessage="Cần phải nhập {0}")]
+            [EmailAddress(ErrorMessage="Nhập sai định dạng email")]
             public string Email { get; set; }
         }
 

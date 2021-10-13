@@ -25,6 +25,7 @@ namespace entity_fr.Areas.Identity.Pages.Account
 
         public void OnGet()
         {
+        
         }
 
         public async Task<IActionResult> OnPost(string returnUrl = null)
@@ -37,7 +38,9 @@ namespace entity_fr.Areas.Identity.Pages.Account
             }
             else
             {
-                return RedirectToPage();
+                returnUrl = Url.Content("~/");
+                return LocalRedirect(returnUrl);
+                // return RedirectToPage();
             }
         }
     }

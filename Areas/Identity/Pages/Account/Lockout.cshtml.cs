@@ -12,6 +12,7 @@ namespace entity_fr.Areas.Identity.Pages.Account
     {
         public void OnGet()
         {
+            
 
         }
     }
