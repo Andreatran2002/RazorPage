@@ -1,0 +1,50 @@
+﻿@page "/admin/members"
+@model App.Admin.User.IndexModel
+@{
+    Layout = "/Pages/Shared/_Layout.cshtml";
+    ViewData["Title"] ="Danh sách các người dùng"; 
+}
+<h1>@ViewData["Title"]</h1> 
+
+<partial name="_StatusMessage" model="@Model.StatusMessage"/>
+
+<p>Tổng số thành viên : <strong>@Model.totalUser</strong></p>
+<table class="table">
+    <tr>
+        <th>Tên User</th>
+        <th> Vai trò(role) </th>
+        <th> Tác vụ </th>
+    </tr>
+    
+    @foreach (var user in Model.users )
+    {
+        <tr>
+        <td>@user.UserName</td>
+        <td>
+            @if(string.IsNullOrEmpty(user.RoleNames))
+            {
+            <a class="text-dark" asp-page="./AddRole" asp-route-id="@user.Id">+Thêm role</a>
+            }
+            else{
+
+            <a  asp-page="./AddRole" asp-route-id="@user.Id">@user.RoleNames</a>
+            }
+            
+        </td>
+        <td>
+            <a class="btn btn-success btn-sm" asp-page="./SetPassword" asp-route-id="@user.Id">Đặt mật khẩu</a>
+        </td>
+        </tr>
+    }
+    
+</table>
+
+@{
+    var pagingmodel = new entity_fr.helpers.PagingModel(){
+        currentPage = Model.currentPage,
+        countPages = Model.countPages,
+        generateUrl = (int? p) => Url.Page("./Index",new {p = p })  
+    }; 
+    
+}
+<partial name="_Paging" model="@pagingmodel"/>

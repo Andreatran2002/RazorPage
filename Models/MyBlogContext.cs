@@ -8,6 +8,8 @@ namespace entity_fr.models{
         public MyBlogContext( DbContextOptions<MyBlogContext> options) : base(options)
         {
             //
+            // this.RoleClaimss
+            // IdentityRolw<string>
         }
         protected override void OnConfiguring(DbContextOptionsBuilder builder)
         {

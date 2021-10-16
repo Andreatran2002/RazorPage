@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using App.Services;
 using entity_fr.Mail;
 using entity_fr.models;
 using Microsoft.AspNetCore.Builder;
@@ -91,21 +92,28 @@ namespace entity_fr
                        var gconfig = Configuration.GetSection("Authentication:Google");
                        option.ClientId = gconfig["ClientId"];
                        option.ClientSecret = gconfig["ClientSecret"];
-                        //https://localhost:5001/signin-google => địa chỉ mặc định
-                        option.CallbackPath = "/dang-nhap-tu-google";
+                       //https://localhost:5001/signin-google => địa chỉ mặc định
+                       option.CallbackPath = "/dang-nhap-tu-google";
                    }).AddFacebook(facebookOptions =>
                    {
-                        // Đọc cấu hình
-                        IConfigurationSection facebookAuthNSection = Configuration.GetSection("Authentication:Facebook");
+                       // Đọc cấu hình
+                       IConfigurationSection facebookAuthNSection = Configuration.GetSection("Authentication:Facebook");
                        facebookOptions.AppId = facebookAuthNSection["AppId"];
                        facebookOptions.AppSecret = facebookAuthNSection["AppSecret"];
-                        // Thiết lập đường dẫn Facebook chuyển hướng đến
-                        facebookOptions.CallbackPath = "/dang-nhap-tu-facebook";
+                       // Thiết lập đường dẫn Facebook chuyển hướng đến
+                       facebookOptions.CallbackPath = "/dang-nhap-tu-facebook";
                    })
                     // .AddMicrosoftAccount()
                     // .AddFacebook()
                     // .AddTwitter()
                     ;
+            services.AddSingleton<IdentityErrorDescriber, AppIdentityErrorDescriber>();
+            services.Configure<SecurityStampValidatorOptions>(options =>
+{
+    // Trên 30 giây truy cập lại sẽ nạp lại thông tin User (Role)
+    // SecurityStamp trong bảng User đổi -> nạp lại thông tinn Security
+    options.ValidationInterval = TimeSpan.FromSeconds(30);
+});
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -149,6 +157,16 @@ namespace entity_fr
     - Authentication : Xác định danh tính -> Login , logout 
     -> Phục hồi thông tin đã đăng nhập , đã xác thực 
     - Authorization : Xác thực quyền truy cập (các chức năng) 
+    -> Role-based authorization - xác thực quyền theo vai trò
+        -Role(vai trò): (Admin, editor, manager,member..)
+        /Areas/Admin/Pages/Role
+        Index
+        Create  
+        Edit                        
+        Delete 
+    => dotnet new page -n Index -o Areas/Admin/Pages/Role -na App.Admin.Role
+    [Authorize]  - Controller , Action , PageModel -> đăng nhập
+
     - Quản lý user : Sign up , Sign in , Role
     /Identity/Account/Login 
     /Identity/Account/Manage
