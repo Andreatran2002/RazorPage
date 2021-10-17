@@ -4,12 +4,16 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using entity_fr.models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
 
 namespace App.Admin.Role
 {
+    // Policy : tạo ra các policy ->alloweditrole
+    [Authorize(Policy="AllowEditRole")]
     public class EditModel : RolePageModel
     {
         public EditModel(RoleManager<IdentityRole> roleManager, MyBlogContext myBlogContext) : base(roleManager, myBlogContext)
@@ -27,6 +31,7 @@ namespace App.Admin.Role
         [BindProperty]
         public InputModel Input{set;get;}
         public IdentityRole role{set;get;}
+        public List<IdentityRoleClaim<string>> Claims{set;get;}
 
         public async Task<IActionResult> OnGet(string roleid)
         {
@@ -38,6 +43,7 @@ namespace App.Admin.Role
                 Input = new InputModel{
                     Name = role.Name
                 }; 
+                Claims = await _context.RoleClaims.Where(r => r.RoleId == role.Id).ToListAsync();
                 return Page(); 
             }
             else return NotFound("Không tìm thấy role");  
@@ -49,6 +55,7 @@ namespace App.Admin.Role
             role = await _roleManager.FindByIdAsync(roleid); 
 
             if (role == null ) return NotFound("Không tìm thấy role");  
+            Claims = await _context.RoleClaims.Where(r => r.RoleId == role.Id).ToListAsync();
             
             if (!ModelState.IsValid)
             {

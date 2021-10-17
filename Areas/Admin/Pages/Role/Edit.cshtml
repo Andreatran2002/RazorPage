@@ -22,6 +22,26 @@
                 <input type="submit" value="Cập nhập" class="btn btn-primary" />
             </div>
         </form>
+        <hr>
+        <p>Các đặt tính của role : 
+            <a asp-page="./AddRoleClaim" asp-route-roleid="@Model.role.Id"> + Thêm claim</a>
+        </p>
+        @if(Model.Claims.Count>0)
+        {
+            <ul>
+
+            @foreach (var c in Model.Claims )
+            {
+                <li>
+                <a asp-page="./EditRoleClaim" asp-route-claimid="@c.Id">
+                    @c.ClaimType : @c.ClaimValue 
+                </a>
+                </li>
+
+            }
+            </ul>
+        }   
+
     </div>
 </div>
 

@@ -109,11 +109,26 @@ namespace entity_fr
                     ;
             services.AddSingleton<IdentityErrorDescriber, AppIdentityErrorDescriber>();
             services.Configure<SecurityStampValidatorOptions>(options =>
-{
-    // Trên 30 giây truy cập lại sẽ nạp lại thông tin User (Role)
-    // SecurityStamp trong bảng User đổi -> nạp lại thông tinn Security
-    options.ValidationInterval = TimeSpan.FromSeconds(30);
-});
+            {
+            // Trên 30 giây truy cập lại sẽ nạp lại thông tin User (Role)
+            // SecurityStamp trong bảng User đổi -> nạp lại thông tinn Security
+            options.ValidationInterval = TimeSpan.FromSeconds(30);});
+            services.AddAuthorization(option =>{
+                option.AddPolicy("AllowEditRole",policyBuilder=>
+                {
+                    //Điều kiện của policyBuilder
+                    policyBuilder.RequireAuthenticatedUser();
+                    // policyBuilder.RequireRole("Admin"); 
+                    // policyBuilder.RequireRole("Editor");
+
+                    policyBuilder.RequireClaim("allowEdit","role");
+
+                    // policyBuilder.RequireClaim("TenClaim",new string[]{"giatri1","giatri2"})
+                    // IdentityRoleClaim<string> claim1; 
+                    // IdentityUserClaim<string> claim2;
+                    // Claim claim;  
+                });
+            }); 
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -157,15 +172,25 @@ namespace entity_fr
     - Authentication : Xác định danh tính -> Login , logout 
     -> Phục hồi thông tin đã đăng nhập , đã xác thực 
     - Authorization : Xác thực quyền truy cập (các chức năng) 
-    -> Role-based authorization - xác thực quyền theo vai trò
+      *  Role-based authorization - xác thực quyền theo vai trò
         -Role(vai trò): (Admin, editor, manager,member..)
         /Areas/Admin/Pages/Role
         Index
         Create  
         Edit                        
         Delete 
-    => dotnet new page -n Index -o Areas/Admin/Pages/Role -na App.Admin.Role
-    [Authorize]  - Controller , Action , PageModel -> đăng nhập
+         => dotnet new page -n Index -o Areas/Admin/Pages/Role -na App.Admin.Role
+        [Authorize]  - Controller , Action , PageModel -> đăng nhập
+      *  Policy-based authorization : xác thực quyền theo chính sách
+        - Policy : tạo ra các policy mà khi vào cần đảm bảo đáp ứng các chính sách đặt ra
+        Vd: [Authorize(Policy="AllowEditRole")]
+      *  Claims-based authorization : xác thực theo đặc tính , tính chất của user
+        - Claims : đựac tính ,tính chất của một đối tượng (user)
+
+        - Bằng lái xe B2(Role) -> đực lái xe 4 chỗ
+          + Ngày sinh ->claim
+          + Nơi sinh -> claim
+        - Mua rượu ( > 18 t) -> kiểm tra ngày sinh -> Claims-based authoziration 
 
     - Quản lý user : Sign up , Sign in , Role
     /Identity/Account/Login 
