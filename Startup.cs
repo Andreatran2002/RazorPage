@@ -2,9 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using App.Security.Requirements;
 using App.Services;
 using entity_fr.Mail;
 using entity_fr.models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -118,7 +120,7 @@ namespace entity_fr
                 {
                     //Điều kiện của policyBuilder
                     policyBuilder.RequireAuthenticatedUser();
-                    // policyBuilder.RequireRole("Admin"); 
+                    policyBuilder.RequireRole("Admin"); 
                     // policyBuilder.RequireRole("Editor");
 
                     policyBuilder.RequireClaim("allowEdit","role");
@@ -128,7 +130,24 @@ namespace entity_fr
                     // IdentityUserClaim<string> claim2;
                     // Claim claim;  
                 });
+                 option.AddPolicy("Genz",policyBuilder=>
+                {
+                   policyBuilder.RequireAuthenticatedUser(); 
+                   policyBuilder.Requirements.Add(new GenZRequirement());
+                   // new GenzRequirement() -> Authorization handler
+                   // Reqirement chỉ khai báo các thành phần có . Nên cần phải kiểm tra thông qua auth handler
+                });
+                option.AddPolicy("ShowAdminMenu",policyBuilder=>
+                {
+                    policyBuilder.RequireRole("Admin");
+                });
+                option.AddPolicy("CanUpdateArticle",policyBuilder=>
+                {
+                    policyBuilder.Requirements.Add(new ArticleUpdateRequirement());
+                });
             }); 
+            services.AddTransient<IAuthorizationHandler,AppAuthorizationHandler>(); 
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

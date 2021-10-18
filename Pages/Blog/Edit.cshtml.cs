@@ -7,16 +7,19 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using entity_fr.models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace entity_fr.Pages_Blog
 {
     public class EditModel : PageModel
     {
         private readonly entity_fr.models.MyBlogContext _context;
+        private readonly IAuthorizationService _authorizationService;
 
-        public EditModel(entity_fr.models.MyBlogContext context)
+        public EditModel(entity_fr.models.MyBlogContext context,IAuthorizationService authorizationService)
         {
             _context = context;
+            _authorizationService = authorizationService;
         }
 
         [BindProperty]
@@ -51,7 +54,10 @@ namespace entity_fr.Pages_Blog
 
             try
             {
-                await _context.SaveChangesAsync();
+                //Kiemtra quyen
+                var canupdate = await _authorizationService.AuthorizeAsync(this.User,Article, "CanUpdateArticle");
+                if (canupdate.Succeeded)  await _context.SaveChangesAsync();
+                else return Content("Không được quyền truy cập hehe"); 
             }
             catch (DbUpdateConcurrencyException)
             {

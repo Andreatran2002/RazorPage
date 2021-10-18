@@ -6,9 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using entity_fr.models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace entity_fr.Pages_Blog
 {
+    [Authorize(Policy="GenZ")]
     public class DetailsModel : PageModel
     {
         private readonly entity_fr.models.MyBlogContext _context;
