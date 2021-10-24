@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using App.Models;
 
-namespace entity_fr.Pages_WorkCheck
+namespace entity_fr.Pages_Business
 {
     public class CreateModel : PageModel
     {
@@ -20,12 +20,13 @@ namespace entity_fr.Pages_WorkCheck
 
         public IActionResult OnGet()
         {
-        ViewData["UserId"] = new SelectList(_context.Users, "Id", "UserName");
+            ViewData["UserId"] = new SelectList(_context.Users, "Id", "UserName");
+            ViewData["JobName"] = new SelectList(_context.Jobs, "JobId", "JobName");
             return Page();
         }
 
         [BindProperty]
-        public WorkCheck WorkCheck { get; set; }
+        public Business Business { get; set; }
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
@@ -34,8 +35,9 @@ namespace entity_fr.Pages_WorkCheck
             {
                 return Page();
             }
+            Business.BusinessId = Guid.NewGuid().ToString(); 
 
-            _context.WorkChecks.Add(WorkCheck);
+            _context.Business.Add(Business);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

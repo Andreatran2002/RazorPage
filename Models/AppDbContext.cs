@@ -38,5 +38,7 @@ namespace App.Models{
         public DbSet<Salary> Salaries { get; set; }
         
         public DbSet<WorkCheck> WorkChecks{ get; set;}
+
+        public DbSet<Business> Business{set;get;}
     }
 }

@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using App.Models;
 
-namespace entity_fr.Pages_WorkCheck
+namespace entity_fr.Pages_Job
 {
     public class CreateModel : PageModel
     {
@@ -20,12 +20,11 @@ namespace entity_fr.Pages_WorkCheck
 
         public IActionResult OnGet()
         {
-        ViewData["UserId"] = new SelectList(_context.Users, "Id", "UserName");
             return Page();
         }
 
         [BindProperty]
-        public WorkCheck WorkCheck { get; set; }
+        public Job Job { get; set; }
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
@@ -35,7 +34,7 @@ namespace entity_fr.Pages_WorkCheck
                 return Page();
             }
 
-            _context.WorkChecks.Add(WorkCheck);
+            _context.Jobs.Add(Job);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

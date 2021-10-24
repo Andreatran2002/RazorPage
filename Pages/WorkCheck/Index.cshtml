@@ -2,7 +2,7 @@
 @model entity_fr.Pages_WorkCheck.IndexModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Danh sách chấm công ";
 }
 
 <h1>Chấm công</h1>
@@ -38,7 +38,11 @@
                 @{
                     
                 }
-                @Html.DisplayFor(modelItem => item.User.Id)
+                @{
+                var user = await Model._userManager.FindByIdAsync(item.User.Id); 
+                @Html.DisplayFor(modelItem => user.UserName); 
+                
+                }
             </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.WorkCheckId">Edit</a> |

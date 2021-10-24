@@ -1,0 +1,64 @@
+@page
+@model entity_fr.Pages_Business.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Danh sách công tác</h1>
+
+<p>
+    <a asp-page="Create">Thêm công tác</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Business[0].User)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Business[0].JobName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Business[0].BusinessFrom)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Business[0].BusinessTo)
+            </th>
+            
+            
+            <th>Tác vụ</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Business) {
+        <tr>
+            <td>
+                
+                @Html.DisplayFor(modelItem => item.User.UserName)
+            </td>
+            <td>
+                @{
+                    var jobname = from j in Model._context.Jobs
+                                where j.JobId == item.JobId
+                                select j.JobName; 
+                }
+                @Html.DisplayFor(modelItem => jobname) 
+                
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BusinessFrom)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BusinessTo)
+            </td>
+            
+            <td>
+                <a class="btn btn-primary" asp-page="./Edit" asp-route-id="@item.BusinessId">Sửa</a> |
+                <a class="btn btn-success"  asp-page="./Details" asp-route-id="@item.BusinessId">Chi tiết</a> |
+                <a class="btn btn-danger"  asp-page="./Delete" asp-route-id="@item.BusinessId">Xóa</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

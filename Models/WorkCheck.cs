@@ -10,6 +10,8 @@ namespace App.Models{
         public string WorkCheckId { get; set; }
 
         [Display(Name="Ngày chấm công ")]
+
+        [Column(TypeName="date")]
         public DateTime WorkDate{ get; set; }
 
         [Display(Name="Tác vụ")]

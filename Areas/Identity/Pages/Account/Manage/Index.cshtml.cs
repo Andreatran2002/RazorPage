@@ -91,7 +91,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
             {
                 return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
             }
-            if (user.Avatar != null)avatar_file = "/uploads/" + user.Avatar;
+            if (user.Avatar != null)avatar_file = "/uploads/" + user.Id+".jpg"; 
             await LoadAsync(user);
             return Page();
         }
@@ -131,7 +131,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 
             if (Avatar != null) {
-                var file = Path.Combine (_environment.ContentRootPath, "wwwroot/uploads", Avatar.FileName);
+                var file = Path.Combine (_environment.ContentRootPath, "wwwroot/uploads", user.Id+".jpg");
                 using (var fileStream = new FileStream (file, FileMode.Create)) {
                 await Avatar.CopyToAsync (fileStream);
                 user.Avatar=Avatar.FileName; 

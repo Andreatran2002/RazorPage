@@ -16,7 +16,7 @@ namespace App.Models
         [StringLength(400)]
         public string Hometown{set;get;}
 
-        [DataType(DataType.Date)]
+        [DataType(DataType.Date)]   
         public DateTime? BirthDate{set;get;}
 
         [DataType(DataType.Date)]

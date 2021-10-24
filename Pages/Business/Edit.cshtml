@@ -1,0 +1,60 @@
+@page
+@model entity_fr.Pages_Business.EditModel
+
+@{
+    ViewData["Title"] = "Cập nhập công tác";
+}
+
+<h1>Cập nhập công tác</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-8">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Business.BusinessId" />
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label asp-for="Business.JobId" class="control-label"></label>
+                    <select asp-for="Business.JobId" class="form-control" asp-items="ViewBag.JobName"></select>
+                    <span asp-validation-for="Business.JobId" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-6">
+                    <label asp-for="Business.UserId" class="control-label"></label>
+                    <select asp-for="Business.UserId" class="form-control" asp-items="ViewBag.UserId"></select>
+                    <span asp-validation-for="Business.UserId" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label asp-for="Business.BusinessFrom" class="control-label"></label>
+                    <input asp-for="Business.BusinessFrom" class="form-control" />
+                    <span asp-validation-for="Business.BusinessFrom" class="text-danger"></span>
+                </div>
+                <div class="col-md-6">
+
+                    <label asp-for="Business.BusinessTo" class="control-label"></label>
+                    <input asp-for="Business.BusinessTo" class="form-control" />
+                    <span asp-validation-for="Business.BusinessTo" class="text-danger"></span>
+                </div>
+            </div>
+           
+            <div class="form-group">
+                <label asp-for="Business.Note" class="control-label"></label>
+                <textarea asp-for="Business.Note" class="form-control" ></textarea>
+                <span asp-validation-for="Business.Note" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Lưu" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Quay lại danh sách</a>
+</div>
+
+@section Scripts {
+@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

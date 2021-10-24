@@ -14,6 +14,9 @@
     <thead>
         <tr>
             <th>
+                @Html.DisplayNameFor(model => model.Education[0].EducationId)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Education[0].EducationName)
             </th>
             <th>
@@ -26,13 +29,18 @@
 @foreach (var item in Model.Education) {
         <tr>
             <td>
+                @Html.DisplayFor(modelItem => item.EducationId)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.EducationId">
                 @Html.DisplayFor(modelItem => item.EducationName)
+                </a> 
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Specialization)
             </td>
             <td>
-                <a class="btn btn-primary"asp-page="./Edit" asp-route-id="@item.EducationId">Sửa</a> |
+                
                 <a class="btn btn-success" asp-page="./Details" asp-route-id="@item.EducationId">Chi tiết</a> |
                 <a class="btn btn-danger" asp-page="./Delete" asp-route-id="@item.EducationId">Xóa</a>
             </td>

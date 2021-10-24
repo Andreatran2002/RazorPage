@@ -4,14 +4,16 @@ using App.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace App.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class MyBlogContextModelSnapshot : ModelSnapshot
+    [Migration("20211024091513_updatedb_5")]
+    partial class updatedb_5
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -165,8 +167,8 @@ namespace App.Migrations
                     b.Property<DateTime>("BusinessTo")
                         .HasColumnType("date");
 
-                    b.Property<string>("JobId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<string>("JobName")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Note")
                         .HasColumnType("nvarchar(max)");
@@ -175,8 +177,6 @@ namespace App.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("BusinessId");
-
-                    b.HasIndex("JobId");
 
                     b.HasIndex("UserId");
 
@@ -475,15 +475,9 @@ namespace App.Migrations
 
             modelBuilder.Entity("App.Models.Business", b =>
                 {
-                    b.HasOne("App.Models.Job", "JobName")
-                        .WithMany()
-                        .HasForeignKey("JobId");
-
                     b.HasOne("App.Models.AppUser", "User")
                         .WithMany()
                         .HasForeignKey("UserId");
-
-                    b.Navigation("JobName");
 
                     b.Navigation("User");
                 });

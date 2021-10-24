@@ -1,0 +1,46 @@
+@page
+@model entity_fr.Pages_Job.IndexModel
+
+@{
+    ViewData["Title"] = "Danh sách chức vụ";
+}
+
+<h1>Danh sách chức vụ</h1>
+
+<p>
+    <a asp-page="Create">Thêm chức vụ</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Job[0].JobId)
+
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Job[0].JobName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Job) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.JobId)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.JobId"> 
+                @Html.DisplayFor(modelItem => item.JobName)
+                </a> 
+               
+            </td>
+            <td>
+                
+                <a class="btn btn-success" asp-page="./Details" asp-route-id="@item.JobId">Chi tiết</a> |
+                <a class="btn btn-danger" asp-page="./Delete" asp-route-id="@item.JobId">Xóa</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

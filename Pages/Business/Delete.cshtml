@@ -1,0 +1,52 @@
+@page
+@model entity_fr.Pages_Business.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Xóa công tác</h1>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Business.User)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Business.User.UserName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Business.JobName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Business.JobName.JobName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Business.BusinessFrom)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Business.BusinessFrom)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Business.BusinessTo)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Business.BusinessTo)
+        </dd>
+        
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Business.Note)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Business.Note)
+        </dd>
+        
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="Business.BusinessId" />
+        <input type="submit" value="Xóa" class="btn btn-danger" /> |
+        <a asp-page="./Index">Quay lại danh sách</a>
+    </form>
+</div>

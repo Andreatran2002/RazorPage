@@ -6,28 +6,23 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using App.Models;
-using Microsoft.AspNetCore.Identity;
 
-namespace entity_fr.Pages_WorkCheck
+namespace entity_fr.Pages_Job
 {
     public class IndexModel : PageModel
     {
         private readonly App.Models.AppDbContext _context;
-        public readonly UserManager<AppUser> _userManager;
 
-        public IndexModel(App.Models.AppDbContext context,
-        UserManager<AppUser> userManager )
+        public IndexModel(App.Models.AppDbContext context)
         {
             _context = context;
-            _userManager = userManager;
         }
 
-        public IList<WorkCheck> WorkCheck { get;set; }
+        public IList<Job> Job { get;set; }
 
         public async Task OnGetAsync()
         {
-            WorkCheck = await _context.WorkChecks
-                .Include(w => w.User).ToListAsync();
+            Job = await _context.Jobs.ToListAsync();
         }
     }
 }

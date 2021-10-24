@@ -1,0 +1,26 @@
+@page
+@model entity_fr.Pages_Job.DeleteModel
+
+@{
+    ViewData["Title"] = "Xóa chức vụ ";
+}
+
+<h1>Xóa chức vụ @Model.Job.JobName</h1>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Job.JobName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Job.JobName)
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="Job.JobId" />
+        <input type="submit" value="Xóa" class="btn btn-danger" /> |
+        <a asp-page="./Index">Quay lại danh sách</a>
+    </form>
+</div>
