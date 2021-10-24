@@ -40,7 +40,7 @@
 </table>
 
 @{
-    var pagingmodel = new entity_fr.helpers.PagingModel(){
+    var pagingmodel = new App.helpers.PagingModel(){
         currentPage = Model.currentPage,
         countPages = Model.countPages,
         generateUrl = (int? p) => Url.Page("./Index",new {p = p })  

@@ -1,11 +1,11 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace entity_fr.models{
-    public class MyBlogContext:IdentityDbContext<AppUser>
+namespace App.Models{
+    public class AppDbContext:IdentityDbContext<AppUser>
     // Khi kế thừa IdentityDbContext<AppUser> thì ngoài có bảng articles thì còn có các bạn được định ngĩa trong appUser
     {
-        public MyBlogContext( DbContextOptions<MyBlogContext> options) : base(options)
+        public AppDbContext( DbContextOptions<AppDbContext> options) : base(options)
         {
             //
             // this.RoleClaimss
@@ -31,6 +31,12 @@ namespace entity_fr.models{
 
         // Tao bảng có dữ liệu của class Article
         public DbSet<Article> articles { get; set; }
-
+        public DbSet<Contract> Contracts { get; set; }
+        public DbSet<Job> Jobs { get; set; }
+        public DbSet<Department> Departments { get; set; }
+        public DbSet<Education> Educations { get; set; }
+        public DbSet<Salary> Salaries { get; set; }
+        
+        public DbSet<WorkCheck> WorkChecks{ get; set;}
     }
 }

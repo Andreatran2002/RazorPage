@@ -2,7 +2,7 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace entity_fr.models{
+namespace App.Models{
     // [Table("posts")]
     public class Article{
         [Key]
@@ -19,5 +19,9 @@ namespace entity_fr.models{
         [Column(TypeName = "ntext")]
         [Display(Name="Nội dung")]
         public string Content { get; set;}
+
+        public string UserId {set; get;}
+        [ForeignKey("UserId")]
+        public AppUser User { get; set;}
     }
 }

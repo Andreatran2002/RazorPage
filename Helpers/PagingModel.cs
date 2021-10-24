@@ -1,6 +1,6 @@
 using System;
 
-namespace entity_fr.helpers{
+namespace App.helpers{
     public class PagingModel{
         public int currentPage { get; set; }
         public int countPages { get; set; }

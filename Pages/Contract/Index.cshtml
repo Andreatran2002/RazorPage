@@ -1,0 +1,57 @@
+@page "/contract"
+@model entity_fr.Pages_Contract.IndexModel
+
+@{
+    ViewData["Title"] = "Danh sách hợp đồng lao động";
+}
+
+<h1>Danh sách hợp đồng lao động</h1>
+
+<p>
+    <a asp-page="Create">Thêm hợp đồng lao động</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Nhân viên 
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Contract[0].ContractType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Contract[0].ContractFrom)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Contract[0].ContractTo)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Contract) {
+        <tr>
+            <td>@{
+                var user = await Model._userManager.FindByIdAsync(item.employee.Id); 
+                @Html.DisplayFor(modelItem => user.UserName); 
+                
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ContractType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ContractFrom)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ContractTo)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.ContractId">Sửa</a> |
+                <a asp-page="./Details" asp-route-id="@item.ContractId">Chi tiết</a> |
+                <a asp-page="./Delete" asp-route-id="@item.ContractId">Xóa</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

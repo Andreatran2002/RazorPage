@@ -1,0 +1,60 @@
+@page
+@model entity_fr.Pages_Salary.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Salary[0].Salary_scale)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Salary[0].Basic_salary)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Salary[0].Coe_salary)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Salary[0].Allowance_coe)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Salary[0].User)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Salary) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Salary_scale)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Basic_salary)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Coe_salary)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Allowance_coe)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.Id)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.SalaryId">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.SalaryId">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.SalaryId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

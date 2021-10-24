@@ -4,8 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using App.Security.Requirements;
 using App.Services;
-using entity_fr.Mail;
-using entity_fr.models;
+using App.Mail;
+using App.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -18,7 +18,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace entity_fr
+namespace App
 {
     public class Startup
     {
@@ -40,7 +40,7 @@ namespace entity_fr
 
             services.AddSingleton<IEmailSender, SendMailService>();
             services.AddRazorPages();
-            services.AddDbContext<MyBlogContext>(options =>
+            services.AddDbContext<AppDbContext>(options =>
             {
                 // Lay du lieu tu trong file appsettings.json
                 string connectionString = Configuration.GetConnectionString("MyBlogContext");
@@ -49,7 +49,7 @@ namespace entity_fr
             // Đk Identity 
 
             services.AddIdentity<AppUser, IdentityRole>()
-            .AddEntityFrameworkStores<MyBlogContext>()
+            .AddEntityFrameworkStores<AppDbContext>()
             .AddDefaultTokenProviders();
             //  services.AddDefaultIdentity<AppUser>()
             // .AddEntityFrameworkStores<MyBlogContext>()
@@ -219,4 +219,5 @@ namespace entity_fr
 
     CallbackPath : 
     https://localhost:5001/dang-nhap-tu-google
+    dotnet aspnet-codegenerator razorpage -m App.Models.Department -dc App.Models.AppDbContext -outDir Pages/Department -udl --referenceScriptLibraries
 */

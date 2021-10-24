@@ -1,0 +1,52 @@
+@page
+@model entity_fr.Pages_Contract.CreateModel
+
+@{
+    ViewData["Title"] = "Thêm mới hợp đồng lao động";
+}
+
+<h1>Tạo thêm hợp đồng lao động</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Contract.ContractId" class="control-label"></label>
+                <input asp-for="Contract.ContractId" class="form-control" />
+                <span asp-validation-for="Contract.ContractId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Contract.EmployeeId" class="control-label"></label>
+                <select asp-for="Contract.EmployeeId" class ="form-control" asp-items="ViewBag.EmployeeId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Contract.ContractType" class="control-label"></label>
+                <input asp-for="Contract.ContractType" class="form-control" />
+                <span asp-validation-for="Contract.ContractType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Contract.ContractFrom" class="control-label"></label>
+                <input asp-for="Contract.ContractFrom" class="form-control" />
+                <span asp-validation-for="Contract.ContractFrom" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Contract.ContractTo" class="control-label"></label>
+                <input asp-for="Contract.ContractTo" class="form-control" />
+                <span asp-validation-for="Contract.ContractTo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Thêm" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Quay lại danh sách </a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

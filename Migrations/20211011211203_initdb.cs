@@ -1,9 +1,9 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Bogus;
-using entity_fr.models;
+using App.Models;
 
-namespace entity_fr.Migrations
+namespace App.Migrations
 {
     public partial class initdb : Migration
     {

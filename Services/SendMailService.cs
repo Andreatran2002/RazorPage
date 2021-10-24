@@ -6,7 +6,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using MimeKit;
 
-namespace entity_fr.Mail {
+namespace App.Mail {
 
     // Cấu hình dịch vụ gửi mail, giá trị Inject từ appsettings.json
     public class MailSettings {

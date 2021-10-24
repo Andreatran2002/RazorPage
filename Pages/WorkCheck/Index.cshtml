@@ -1,0 +1,51 @@
+@page
+@model entity_fr.Pages_WorkCheck.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Chấm công</h1>
+
+<p>
+    <a asp-page="Create">Thêm chấm công</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.WorkCheck[0].WorkDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WorkCheck[0].WorkStatus)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WorkCheck[0].User)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.WorkCheck) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.WorkDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WorkStatus)
+            </td>
+            <td>
+                @{
+                    
+                }
+                @Html.DisplayFor(modelItem => item.User.Id)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.WorkCheckId">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.WorkCheckId">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.WorkCheckId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

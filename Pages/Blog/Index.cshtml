@@ -1,5 +1,5 @@
 @page
-@model entity_fr.Pages_Blog.IndexModel
+@model App.Pages_Blog.IndexModel
 
 @{
     ViewData["Title"] = "Các bài viết";
@@ -7,7 +7,7 @@
 }
 @* @Url.Page("/Blog/Index", new {abc = 1, b = 10}) *@
 @{
-    var pagingmodel = new entity_fr.helpers.PagingModel(){
+    var pagingmodel = new App.helpers.PagingModel(){
         currentPage = Model.currentPage,
         countPages = Model.countPages,
         generateUrl = (int? p) => Url.Page("/Blog/Index",new {p = p })  

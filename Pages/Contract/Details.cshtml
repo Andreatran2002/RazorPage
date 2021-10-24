@@ -1,0 +1,42 @@
+@page
+@model entity_fr.Pages_Contract.DetailsModel
+
+@{
+    ViewData["Title"] = "Chi tiết hợp đồng";
+}
+
+<h1>Chi tiết hợp đồng lao động</h1>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Contract.employee)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Contract.employee.Id)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Contract.ContractType)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Contract.ContractType)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Contract.ContractFrom)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Contract.ContractFrom)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Contract.ContractTo)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Contract.ContractTo)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Contract.ContractId">Cập nhập</a> |
+    <a asp-page="./Index">Quay lại danh sách</a>
+</div>

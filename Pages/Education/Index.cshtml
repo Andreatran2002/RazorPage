@@ -1,0 +1,42 @@
+@page "/education"
+@model entity_fr.Pages_Education.IndexModel
+
+@{
+    ViewData["Title"] = "Danh sách trình độ học vấn";
+}
+
+<h1>Danh sách trình độ học vấn</h1>
+
+<p>
+    <a asp-page="Create">Thêm trình độ học vấn</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Education[0].EducationName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Education[0].Specialization)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Education) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.EducationName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Specialization)
+            </td>
+            <td>
+                <a class="btn btn-primary"asp-page="./Edit" asp-route-id="@item.EducationId">Sửa</a> |
+                <a class="btn btn-success" asp-page="./Details" asp-route-id="@item.EducationId">Chi tiết</a> |
+                <a class="btn btn-danger" asp-page="./Delete" asp-route-id="@item.EducationId">Xóa</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

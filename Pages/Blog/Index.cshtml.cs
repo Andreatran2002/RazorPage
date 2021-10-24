@@ -5,17 +5,17 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using entity_fr.models;
+using App.Models;
 using Microsoft.AspNetCore.Authorization;
 
-namespace entity_fr.Pages_Blog
+namespace App.Pages_Blog
 {
     [Authorize]
     public class IndexModel : PageModel
     {
-        private readonly entity_fr.models.MyBlogContext _context;
+        private readonly App.Models.AppDbContext _context;
 
-        public IndexModel(entity_fr.models.MyBlogContext context)
+        public IndexModel(App.Models.AppDbContext context)
         {
             _context = context;
         }

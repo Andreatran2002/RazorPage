@@ -1,0 +1,36 @@
+@page
+@model entity_fr.Pages_Department.DetailsModel
+
+@{
+    ViewData["Title"] = "Thông tin phòng ban";
+}
+
+<h1>Thông tin chi tiết phòng ban @Model.Department.Department_name</h1>
+
+    <hr />
+<div>
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Department.Department_name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Department.Department_name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Department.HomeAddress)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Department.HomeAddress)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Department.Phone)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Department.Phone)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Department.Department_id">Cập nhập</a> |
+    <a asp-page="./Index">Quay lại danh sách</a>
+</div>

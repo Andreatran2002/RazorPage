@@ -1,0 +1,38 @@
+@page
+@model entity_fr.Pages_Department.DeleteModel
+
+@{
+    ViewData["Title"] = "Xóa phòng ban";
+}
+
+<h1>Xóa phòng ban : @Model.Department.Department_name</h1>
+
+    <hr />
+<div>
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Department.Department_name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Department.Department_name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Department.HomeAddress)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Department.HomeAddress)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Department.Phone)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Department.Phone)
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="Department.Department_id" />
+        <input type="submit" value="Xóa" class="btn btn-danger" /> |
+        <a asp-page="./Index">Quay lại danh sách</a>
+    </form>
+</div>

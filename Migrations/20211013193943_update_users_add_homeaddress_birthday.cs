@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace entity_fr.Migrations
+namespace App.Migrations
 {
     public partial class update_users_add_homeaddress_birthday : Migration
     {

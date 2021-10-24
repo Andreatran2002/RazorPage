@@ -6,17 +6,17 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using entity_fr.models;
+using App.Models;
 using Microsoft.AspNetCore.Authorization;
 
-namespace entity_fr.Pages_Blog
+namespace App.Pages_Blog
 {
     public class EditModel : PageModel
     {
-        private readonly entity_fr.models.MyBlogContext _context;
+        private readonly App.Models.AppDbContext _context;
         private readonly IAuthorizationService _authorizationService;
 
-        public EditModel(entity_fr.models.MyBlogContext context,IAuthorizationService authorizationService)
+        public EditModel(App.Models.AppDbContext context,IAuthorizationService authorizationService)
         {
             _context = context;
             _authorizationService = authorizationService;
