@@ -160,10 +160,10 @@ namespace App.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime>("BusinessFrom")
-                        .HasColumnType("date");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("BusinessTo")
-                        .HasColumnType("date");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("JobId")
                         .HasColumnType("nvarchar(450)");
@@ -300,16 +300,31 @@ namespace App.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime>("WorkDate")
-                        .HasColumnType("date");
+                        .HasColumnType("datetime2");
 
-                    b.Property<string>("WorkStatus")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<string>("WorkStatusId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("WorkCheckId");
 
                     b.HasIndex("UserId");
 
+                    b.HasIndex("WorkStatusId");
+
                     b.ToTable("WorkChecks");
+                });
+
+            modelBuilder.Entity("App.Models.WorkStatus", b =>
+                {
+                    b.Property<string>("WorkStatusId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Status")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("WorkStatusId");
+
+                    b.ToTable("WorkStatus");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -512,7 +527,13 @@ namespace App.Migrations
                         .WithMany()
                         .HasForeignKey("UserId");
 
+                    b.HasOne("App.Models.WorkStatus", "WorkStatus")
+                        .WithMany()
+                        .HasForeignKey("WorkStatusId");
+
                     b.Navigation("User");
+
+                    b.Navigation("WorkStatus");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

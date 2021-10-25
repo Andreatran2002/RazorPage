@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using App.Models;
 
-namespace entity_fr.Pages_WorkCheck
+namespace App.Pages_WorkCheck
 {
     public class DeleteModel : PageModel
     {
@@ -29,7 +29,7 @@ namespace entity_fr.Pages_WorkCheck
             }
 
             WorkCheck = await _context.WorkChecks
-                .Include(w => w.User).FirstOrDefaultAsync(m => m.WorkCheckId == id);
+                .Include(w => w.User).Include(w => w.WorkStatus).FirstOrDefaultAsync(m => m.WorkCheckId == id);
 
             if (WorkCheck == null)
             {

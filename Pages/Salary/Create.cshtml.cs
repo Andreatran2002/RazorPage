@@ -6,21 +6,25 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using App.Models;
+using Microsoft.AspNetCore.Identity;
 
-namespace entity_fr.Pages_Salary
+namespace App.Pages_Salary
 {
     public class CreateModel : PageModel
     {
         private readonly App.Models.AppDbContext _context;
+        private readonly UserManager<AppUser> _userManager;
 
-        public CreateModel(App.Models.AppDbContext context)
+        public CreateModel(App.Models.AppDbContext context,
+         UserManager<AppUser> userManager )
         {
             _context = context;
+            _userManager = userManager;
         }
 
         public IActionResult OnGet()
         {
-        ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id");
+        ViewData["UserId"] = new SelectList(_context.Users, "Id", "UserName");
             return Page();
         }
 
@@ -35,10 +39,18 @@ namespace entity_fr.Pages_Salary
                 return Page();
             }
 
+            var hasUser = (from s in _context.Salaries
+                            where s.UserId == Salary.UserId
+                            select s).FirstOrDefault(); 
+            if (hasUser == null){
+
+            Salary.SalaryId =  Guid.NewGuid().ToString() ; 
             _context.Salaries.Add(Salary);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");
+            }
+            else return Content("Đã có thông số lương của nhân viên ");
         }
     }
 }

@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using App.Models;
 
-namespace entity_fr.Pages_WorkCheck
+namespace App.Pages_WorkCheck
 {
     public class EditModel : PageModel
     {
@@ -30,13 +30,15 @@ namespace entity_fr.Pages_WorkCheck
             }
 
             WorkCheck = await _context.WorkChecks
-                .Include(w => w.User).FirstOrDefaultAsync(m => m.WorkCheckId == id);
+                .Include(w => w.User).Include(w => w.WorkStatus).FirstOrDefaultAsync(m => m.WorkCheckId == id);
 
             if (WorkCheck == null)
             {
                 return NotFound();
             }
-           ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id");
+           ViewData["UserId"] = new SelectList(_context.Users, "Id", "UserName");
+           ViewData["WorkStatus"] = new SelectList(_context.WorkStatus, "WorkStatusId", "Status");
+
             return Page();
         }
 

@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using App.Models;
 
-namespace entity_fr.Pages_Contract
+namespace App.Pages_Contract
 {
     public class CreateModel : PageModel
     {
@@ -20,7 +20,7 @@ namespace entity_fr.Pages_Contract
 
         public IActionResult OnGet()
         {
-        ViewData["EmployeeId"] = new SelectList(_context.Users, "Id", "Id");
+        ViewData["EmployeeId"] = new SelectList(_context.Users, "Id", "UserName");
             return Page();
         }
 
@@ -34,6 +34,8 @@ namespace entity_fr.Pages_Contract
             {
                 return Page();
             }
+
+            
 
             _context.Contracts.Add(Contract);
             await _context.SaveChangesAsync();

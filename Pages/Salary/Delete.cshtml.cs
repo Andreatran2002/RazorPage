@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using App.Models;
 
-namespace entity_fr.Pages_Salary
+namespace App.Pages_Salary
 {
     public class DeleteModel : PageModel
     {

@@ -11,12 +11,12 @@ namespace App.Models{
 
         [Display(Name="Ngày bắt đầu  ")]
 
-        [Column(TypeName="date")]
+        [DataType(DataType.Date)]
         public DateTime BusinessFrom{ get; set; }
 
         [Display(Name="Ngày kết thúc  ")]
 
-        [Column(TypeName="date")]
+       [DataType(DataType.Date)]
         public DateTime BusinessTo{ get; set; }
 
 

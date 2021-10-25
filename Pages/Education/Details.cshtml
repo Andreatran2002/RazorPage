@@ -1,5 +1,5 @@
 @page
-@model entity_fr.Pages_Education.DetailsModel
+@model App.Pages_Education.DetailsModel
 
 @{
     ViewData["Title"] = "Chi tiết trình độ học vấn";
@@ -10,6 +10,12 @@
 <div>
     <hr />
     <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Education.EducationId)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Education.EducationId)
+        </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Education.EducationName)
         </dt>

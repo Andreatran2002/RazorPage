@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using App.Models;
 
-namespace entity_fr.Pages_Salary
+namespace App.Pages_Salary
 {
     public class EditModel : PageModel
     {
@@ -36,7 +36,7 @@ namespace entity_fr.Pages_Salary
             {
                 return NotFound();
             }
-           ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id");
+           ViewData["UserId"] = new SelectList(_context.Users, "Id", "UserName");
             return Page();
         }
 

@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using App.Models;
 
-namespace entity_fr.Pages_Department
+namespace App.Pages_Department
 {
     public class CreateModel : PageModel
     {

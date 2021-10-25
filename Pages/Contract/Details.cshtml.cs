@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using App.Models;
 
-namespace entity_fr.Pages_Contract
+namespace App.Pages_Contract
 {
     public class DetailsModel : PageModel
     {

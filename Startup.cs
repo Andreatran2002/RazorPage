@@ -220,4 +220,5 @@ namespace App
     CallbackPath : 
     https://localhost:5001/dang-nhap-tu-google
     dotnet aspnet-codegenerator razorpage -m App.Models.Department -dc App.Models.AppDbContext -outDir Pages/Department -udl --referenceScriptLibraries
+     Guid.NewGuid().ToString(); 
 */

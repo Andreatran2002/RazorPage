@@ -1,0 +1,35 @@
+@page
+@model App.Pages_WorkStatus.IndexModel
+
+@{
+    ViewData["Title"] = "Danh sách tác vụ ";
+}
+
+<h1>Danh sách tác vụ</h1>
+
+<p>
+    <a asp-page="Create">Thêm</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.WorkStatus[0].Status)
+            </th>
+            <th>Tác vụ</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.WorkStatus) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.WorkStatusId">Sửa</a> 
+                <a asp-page="./Delete" asp-route-id="@item.WorkStatusId">Xóa</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

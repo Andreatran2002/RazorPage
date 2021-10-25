@@ -1,5 +1,5 @@
 @page
-@model entity_fr.Pages_WorkCheck.IndexModel
+@model App.Pages_WorkCheck.IndexModel
 
 @{
     ViewData["Title"] = "Danh sách chấm công ";
@@ -8,46 +8,39 @@
 <h1>Chấm công</h1>
 
 <p>
-    <a asp-page="Create">Thêm chấm công</a>
+    <a asp-page="Create">Thêm</a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
+                @Html.DisplayNameFor(model => model.WorkCheck[0].User)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.WorkCheck[0].WorkDate)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.WorkCheck[0].WorkStatus)
+                @Html.DisplayNameFor(model => model.WorkCheck[0].WorkStatusId)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.WorkCheck[0].User)
-            </th>
-            <th></th>
+            <th>Tác vụ</th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model.WorkCheck) {
         <tr>
             <td>
+                @Html.DisplayFor(modelItem => item.User.UserName)
+                
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.WorkDate)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.WorkStatus)
+                @Html.DisplayFor(modelItem => item.WorkStatus.Status)
             </td>
             <td>
-                @{
-                    
-                }
-                @{
-                var user = await Model._userManager.FindByIdAsync(item.User.Id); 
-                @Html.DisplayFor(modelItem => user.UserName); 
-                
-                }
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.WorkCheckId">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.WorkCheckId">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.WorkCheckId">Delete</a>
+                <a asp-page="./Edit" asp-route-id="@item.WorkCheckId">Sửa</a> |
+                <a asp-page="./Delete" asp-route-id="@item.WorkCheckId">Xóa</a>
             </td>
         </tr>
 }

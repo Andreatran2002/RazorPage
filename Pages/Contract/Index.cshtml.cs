@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using App.Models;
 using Microsoft.AspNetCore.Identity;
 
-namespace entity_fr.Pages_Contract
+namespace App.Pages_Contract
 {
     public class IndexModel : PageModel
     {

@@ -1,5 +1,5 @@
 @page "/department"
-@model entity_fr.Pages_Department.IndexModel
+@model App.Pages_Department.IndexModel
 
 @{
     ViewData["Title"] = "Phòng ban";
@@ -8,19 +8,19 @@
 <h1>Danh sách phòng ban</h1>
 
 <p>
-    <a asp-page="Create">Create New</a>
+    <a asp-page="Create">Thêm phòng ban</a>
 </p>
 <table class="table">
     <thead>
         <tr>
-            <th@Html.DisplayNameFor(model => model.Department[0].Department_id)></th@Html.DisplayNameFor>
+            <th>@Html.DisplayNameFor(model => model.Department[0].Department_id)</th>
             <th>
                 @Html.DisplayNameFor(model => model.Department[0].Department_name)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Department[0].Phone)
             </th>
-            <th></th>
+            <th>Tác vụ</th>
         </tr>
     </thead>
     <tbody>

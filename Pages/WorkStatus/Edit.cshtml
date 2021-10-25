@@ -1,0 +1,34 @@
+@page
+@model App.Pages_WorkStatus.EditModel
+
+@{
+    ViewData["Title"] = "Cập nhập tác vụ";
+}
+
+<h1>Cập nhập tác vụ </h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="WorkStatus.WorkStatusId" />
+            <div class="form-group">
+                <label asp-for="WorkStatus.Status" class="control-label"></label>
+                <input asp-for="WorkStatus.Status" class="form-control" />
+                <span asp-validation-for="WorkStatus.Status" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Lưu" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Quay lại danh sách</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

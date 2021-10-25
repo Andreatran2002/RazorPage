@@ -11,12 +11,15 @@ namespace App.Models{
 
         [Display(Name="Ngày chấm công ")]
 
-        [Column(TypeName="date")]
+        [DataType(DataType.Date)]
         public DateTime WorkDate{ get; set; }
 
-        [Display(Name="Tác vụ")]
+        [Display(Name="Trạng thái làm việc ")]
+        public string WorkStatusId { get; set; }
 
-        public string WorkStatus{ get; set; }
+        [ForeignKey("WorkStatusId")]
+        [Display(Name="Nhân viên")]
+        public WorkStatus WorkStatus{ get; set; }
 
         [Display(Name="Nhân viên")]
         public string UserId {set; get;}

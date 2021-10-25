@@ -1,23 +1,21 @@
 @page
-@model entity_fr.Pages_Salary.CreateModel
+@model App.Pages_Salary.CreateModel
 
 @{
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+<h1>Thêm mới thông tin lương của nhân viên</h1>
 
-<h4>Salary</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-8">
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Salary.SalaryId" class="control-label"></label>
-                <input asp-for="Salary.SalaryId" class="form-control" />
-                <span asp-validation-for="Salary.SalaryId" class="text-danger"></span>
-            </div>
+                <label asp-for="Salary.UserId" class="control-label"></label>
+                <select asp-for="Salary.UserId" class ="form-control" asp-items="ViewBag.UserId"></select>
+            </div>  
             <div class="form-group">
                 <label asp-for="Salary.Salary_scale" class="control-label"></label>
                 <input asp-for="Salary.Salary_scale" class="form-control" />
@@ -38,19 +36,16 @@
                 <input asp-for="Salary.Allowance_coe" class="form-control" />
                 <span asp-validation-for="Salary.Allowance_coe" class="text-danger"></span>
             </div>
+            
             <div class="form-group">
-                <label asp-for="Salary.UserId" class="control-label"></label>
-                <select asp-for="Salary.UserId" class ="form-control" asp-items="ViewBag.UserId"></select>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Thêm" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-page="Index">Back to List</a>
+    <a asp-page="Index">Quay lại danh sách</a>
 </div>
 
 @section Scripts {

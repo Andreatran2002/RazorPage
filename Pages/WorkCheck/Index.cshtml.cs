@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using App.Models;
 using Microsoft.AspNetCore.Identity;
 
-namespace entity_fr.Pages_WorkCheck
+namespace App.Pages_WorkCheck
 {
     public class IndexModel : PageModel
     {
@@ -27,7 +27,7 @@ namespace entity_fr.Pages_WorkCheck
         public async Task OnGetAsync()
         {
             WorkCheck = await _context.WorkChecks
-                .Include(w => w.User).ToListAsync();
+                .Include(w => w.User).Include(w => w.WorkStatus).ToListAsync();
         }
     }
 }

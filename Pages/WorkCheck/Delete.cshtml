@@ -1,15 +1,13 @@
 @page
-@model entity_fr.Pages_WorkCheck.DeleteModel
+@model App.Pages_WorkCheck.DeleteModel
 
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "Xóa bảng chấm công";
 }
 
-<h1>Delete</h1>
+<h1>Xóa bảng chấm công </h1>
 
-<h3>Are you sure you want to delete this?</h3>
 <div>
-    <h4>WorkCheck</h4>
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
@@ -19,22 +17,22 @@
             @Html.DisplayFor(model => model.WorkCheck.WorkDate)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.WorkCheck.WorkStatus)
+            @Html.DisplayNameFor(model => model.WorkCheck.WorkStatusId)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.WorkCheck.WorkStatus)
+            @Html.DisplayFor(model => model.WorkCheck.WorkStatus.Status)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.WorkCheck.User)
+            @Html.DisplayNameFor(model => model.WorkCheck.UserId)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.WorkCheck.User.Id)
+            @Html.DisplayFor(model => model.WorkCheck.User.UserName)
         </dd>
     </dl>
     
     <form method="post">
         <input type="hidden" asp-for="WorkCheck.WorkCheckId" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-page="./Index">Back to List</a>
+        <input type="submit" value="Xóa" class="btn btn-danger" /> |
+        <a asp-page="./Index">Quay lại danh sách</a>
     </form>
 </div>

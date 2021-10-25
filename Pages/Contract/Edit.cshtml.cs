@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using App.Models;
 
-namespace entity_fr.Pages_Contract
+namespace App.Pages_Contract
 {
     public class EditModel : PageModel
     {
@@ -30,13 +30,13 @@ namespace entity_fr.Pages_Contract
             }
 
             Contract = await _context.Contracts
-                .Include(c => c.employee).FirstOrDefaultAsync(m => m.ContractId == id);
+                .Include(c => c.employee).Include(c => c.employee).FirstOrDefaultAsync(m => m.ContractId == id);
 
             if (Contract == null)
             {
                 return NotFound();
             }
-           ViewData["EmployeeId"] = new SelectList(_context.Users, "Id", "Id");
+           ViewData["EmployeeId"] = new SelectList(_context.Users, "Id", "UserName");
             return Page();
         }
 

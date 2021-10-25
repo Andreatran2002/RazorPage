@@ -24,6 +24,8 @@ namespace App.Models{
         [Column(TypeName = "ntext")]
         [Display(Name="Hệ số phụ cấp ")]
         public double Allowance_coe { get; set;}  
+        
+        [Display(Name="Nhân viên")]
         public string UserId {set; get;}
         [ForeignKey("UserId")]
         public AppUser User { get; set;}
